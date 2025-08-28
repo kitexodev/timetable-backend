@@ -29,9 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'timetable-backend-e1rc.onrender.com', # Your Render backend URL
     'timetable-gen-kv.vercel.app',       # Your Vercel frontend URL
-    '127.0.0.1',  
-    
-    
+    '127.0.0.1',
+    'http://localhost:3000',  
     ]
 
 
