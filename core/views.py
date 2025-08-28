@@ -3,8 +3,6 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import viewsets
-from .models import AlgorithmSettings # Add this import at the top
-from .serializers import AlgorithmSettingsSerializer # Add this import at the top
 from django.http import HttpResponse
 import openpyxl
 import json
@@ -156,7 +154,6 @@ class ValidateMoveView(APIView):
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-class AlgorithmSettingsViewSet(viewsets.ViewSet):
     """
     A custom ViewSet for handling AlgorithmSettings by their key.
     """

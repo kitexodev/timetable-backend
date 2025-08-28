@@ -1,6 +1,5 @@
 # core/serializers.py
 from rest_framework import serializers
-from .models import AlgorithmSettings
 from .models import (
     Teacher,
     Subject,
@@ -15,7 +14,7 @@ from .models import (
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
-        fields = '__all__'
+        fields = ['id', 'name', 'designation', 'max_periods_per_week']
 
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -52,9 +51,3 @@ class ConstraintParameterSerializer(serializers.ModelSerializer):
     class Meta:
         model = ConstraintParameter
         fields = '__all__'
-
-
-class AlgorithmSettingsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AlgorithmSettings
-        fields = ['key', 'value']

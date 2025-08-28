@@ -2,8 +2,7 @@
 from django.db import models
 
 class Teacher(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     designation = models.CharField(max_length=50, help_text="e.g., 'PPRT', 'PRT', 'TGT', 'PGT'")
     max_periods_per_week = models.PositiveIntegerField()
 
@@ -47,7 +46,6 @@ class Lesson(models.Model):
     student_group = models.ForeignKey(StudentGroup, on_delete=models.CASCADE)
     teachers = models.ManyToManyField(Teacher, help_text="Select one or more teachers for this lesson")
     periods_per_week = models.PositiveIntegerField()
-    is_double_period = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.subject.subject_name} for {self.student_group.group_name}"
@@ -79,10 +77,3 @@ class ConstraintParameter(models.Model):
 
     def __str__(self):
         return f"{self.instance}: {self.parameter_key} = {self.parameter_value}"
-    
-class AlgorithmSettings(models.Model):
-    key = models.CharField(max_length=100, primary_key=True)
-    value = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"{self.key}: {self.value}"

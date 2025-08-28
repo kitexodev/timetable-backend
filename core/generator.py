@@ -85,40 +85,6 @@ class TimetableGenerator:
             population.append(timetable)
         return population
 
-    # --- (calculate_fitness is the same) ---
-    def calculate_fitness(self, timetable):
-        if timetable is None:
-            return float('inf') # Return a very high penalty for invalid timetables
-        # ... (rest of the fitness function is the same)
-        penalty = 0
-        teacher_slots = defaultdict(list)
-        group_slots = defaultdict(list)
-        for lesson in timetable:
-            teacher_id = lesson['teacher_id']
-            group_id = lesson['group_id']
-            slot = lesson['timeslot']
-            if slot in teacher_slots[teacher_id]: penalty += 1000
-            teacher_slots[teacher_id].append(slot)
-            if slot in group_slots[group_id]: penalty += 1000
-            group_slots[group_id].append(slot)
-        for teacher_id, slots in teacher_slots.items():
-            max_periods = self.teachers[teacher_id].get('max_periods_per_week', 48)
-            if len(slots) > max_periods: penalty += 500 * (len(slots) - max_periods)
-        double_period_lessons = [l for l in timetable if l.get('is_double_period')]
-        for dpl in double_period_lessons:
-            day, period_str = dpl['timeslot'].split('-')
-            period = int(period_str)
-            is_paired = False
-            for other_dpl in double_period_lessons:
-                if dpl['unique_id'] != other_dpl['unique_id'] and dpl['lesson_id'] == other_dpl['lesson_id']:
-                    other_day, other_period_str = other_dpl['timeslot'].split('-')
-                    other_period = int(other_period_str)
-                    if day == other_day and abs(period - other_period) == 1:
-                        is_paired = True
-                        break
-            if not is_paired: penalty += 50
-        return penalty
-
     # --- (selection method is the same) ---
     def selection(self, fitness_scores):
         elites = [fs[1] for fs in fitness_scores[:ELITISM_COUNT]]

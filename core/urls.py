@@ -13,7 +13,6 @@ from.views import (
     ConstraintInstanceViewSet,
     ConstraintParameterViewSet,
     ValidateMoveView,
-    AlgorithmSettingsViewSet
 )
 
 router = DefaultRouter()
@@ -24,7 +23,6 @@ router.register(r'timeslots', TimeSlotViewSet)
 router.register(r'lessons', LessonViewSet)
 router.register(r'constraint-types', ConstraintTypeViewSet)
 router.register(r'constraint-instances', ConstraintInstanceViewSet)
-router.register(r'settings', AlgorithmSettingsViewSet, basename='setting')
 router.register(r'constraint-parameters', ConstraintParameterViewSet)
 
 urlpatterns = router.urls
