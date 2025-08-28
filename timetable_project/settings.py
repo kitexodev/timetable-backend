@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-7%&qa7(+mc!^+r3)n_7@*z-f5v9f*kml7g7k!=9-an9cj^o#j$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['your-app-name.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'timetable-backend-e1rc.onrender.com', # Your Render backend URL
+    'timetable-gen-kv.vercel.app',       # Your Vercel frontend URL
+    '127.0.0.1',  
+    
+    
+    ]
 
 
 # Application definition
@@ -128,6 +134,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CHANGE 2: Added an empty list as the value. This fixes the SyntaxError.
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-]
+CORS_ALLOWED_ORIGINS = True
