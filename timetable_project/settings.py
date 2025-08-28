@@ -134,4 +134,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CHANGE 2: Added an empty list as the value. This fixes the SyntaxError.
-CORS_ALLOWED_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'https://timetable-gen-kv.vercel.app', # Your live frontend URL
+]
